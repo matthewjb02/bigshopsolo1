@@ -9,6 +9,7 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
@@ -47,6 +48,19 @@ public class ListResource {
 
         return Response.status(404).entity(Map.of("message", "Shopper not found!")).build();
     }
+
+    @PUT
+    @Path("{name}")
+    public Response resetShoppingList(@PathParam("name") String name) {
+        ShoppingList list = getShop().getShoppingListByName(name);
+        if (list != null) {
+            list.reset();
+            return Response.ok().build();
+        } else {
+            return Response.status(404).build();
+        }
+    }
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
