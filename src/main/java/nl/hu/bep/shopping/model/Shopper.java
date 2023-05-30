@@ -35,7 +35,7 @@ public class Shopper implements NamedObject {
     }
 
     public static List<Shopper> getAllShoppers() {
-        return Collections.unmodifiableList(allShoppers);
+        return (allShoppers);
     }
 
     public boolean addList(ShoppingList newList) {
@@ -47,7 +47,7 @@ public class Shopper implements NamedObject {
 
     @JsonIgnore
     public List<ShoppingList> getAllLists() {
-        return Collections.unmodifiableList(allLists);
+        return allLists;
     }
 
     public int getAmountOfLists() {

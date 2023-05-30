@@ -22,11 +22,11 @@ public class ShoppingList implements NamedObject {
     }
 
     public static List<ShoppingList> getAllLists() {
-        return Collections.unmodifiableList(allLists);
+        return allLists;
     }
 
     public List<Item> getListItems() {
-        return Collections.unmodifiableList(listItems);
+        return listItems;
     }
 
     public boolean addItem(Product p, int amount) {
