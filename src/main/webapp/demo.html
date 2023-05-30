@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function createList() {
+            let requestData = {
+                "shoppinglistname" : document.querySelector("#listname").value,
+                "shoppername" : document.querySelector("#ownername").value
+            }
+
+            let fetchOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData)
+            }
+
+            fetch("/restservices/list", fetchOptions)
+                .then(response => response.json())
+                .then(myJsonResponse => {
+                    document.querySelector("#result").innerHTML = myJsonResponse.message;
+                })
+        }
+
+        window.addEventListener("load", function() {
+            document.querySelector("#postbutton").addEventListener("click", createList);
+        });
+
+    </script>
+</head>
+<body>
+  <form id="postlistform">
+
+      <input type="text" name="listname" id="listname" placeholder="listname" /> <br>
+      <input type="text" name="ownername" id="ownername" placeholder="ownername" /> <br>
+      <input type="button" value="Create list!" id="postbutton" />
+  </form>
+  <p id="result"></p>
+</body>
+</html>

@@ -48,4 +48,8 @@ public class ShoppingList implements NamedObject {
     public Shopper getOwner() {
         return owner;
     }
+
+    public void reset() {
+        listItems.clear();
+    }
 }

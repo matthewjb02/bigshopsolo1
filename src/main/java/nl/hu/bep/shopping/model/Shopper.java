@@ -9,12 +9,31 @@ import java.util.Objects;
 
 public class Shopper implements NamedObject {
     private String name;
+    private String password;
+    private String role;
     private static List<Shopper> allShoppers = new ArrayList<>();
     private List<ShoppingList> allLists = new ArrayList<>();
 
     public Shopper(String nm) {
         this.name = nm;
+        this.password = "secret";
+        this.role = "admin";
         if (!allShoppers.contains(this)) allShoppers.add(this);
+    }
+
+    public Shopper(String nm, String password, String role) {
+        this.name = nm;
+        this.password = password;
+        this.role = role;
+        if (!allShoppers.contains(this)) allShoppers.add(this);
+    }
+
+    public boolean checkPassword(String passwordToCheck) {
+        return passwordToCheck.equals(password);
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override
